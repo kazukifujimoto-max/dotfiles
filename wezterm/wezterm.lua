@@ -3,6 +3,7 @@ local background = require("background")
 local transparency = require("transparency")
 
 local config = wezterm.config_builder()
+local act = wezterm.action
 
 config.automatically_reload_config = true
 config.font_size = 15.7
@@ -91,5 +92,52 @@ config.keys = require("keybinds").keys
 config.key_tables = require("keybinds").key_tables
 table.insert(config.keys, transparency.key)
 config.leader = { key = "q", mods = "CTRL", timeout_milliseconds = 2000 }
+
+----------------------------------------------------
+-- CopyMode
+----------------------------------------------------
+config.keys = {
+  {
+    key = 'X',
+    mods = 'CTRL|SHIFT',
+    action = act.ActivateCopyMode,
+  },
+}
+
+config.key_tables = {
+  copy_mode = {
+    { key = 'Escape', mods = 'NONE',  action = act.CopyMode 'Close' },
+    { key = 'q',      mods = 'NONE',  action = act.CopyMode 'Close' },
+
+    -- 移動
+    { key = 'h',      mods = 'NONE',  action = act.CopyMode 'MoveLeft' },
+    { key = 'j',      mods = 'NONE',  action = act.CopyMode 'MoveDown' },
+    { key = 'k',      mods = 'NONE',  action = act.CopyMode 'MoveUp' },
+    { key = 'l',      mods = 'NONE',  action = act.CopyMode 'MoveRight' },
+    { key = 'w',      mods = 'NONE',  action = act.CopyMode 'MoveForwardWord' },
+    { key = 'b',      mods = 'NONE',  action = act.CopyMode 'MoveBackwardWord' },
+    { key = 'e',      mods = 'NONE',  action = act.CopyMode 'MoveForwardWordEnd' },
+    { key = '0',      mods = 'NONE',  action = act.CopyMode 'MoveToStartOfLine' },
+    { key = '$',      mods = 'NONE',  action = act.CopyMode 'MoveToEndOfLineContent' },
+    { key = 'g',      mods = 'NONE',  action = act.CopyMode 'MoveToStartOfViewport' },
+    { key = 'G',      mods = 'SHIFT', action = act.CopyMode 'MoveToEndOfViewport' },
+
+    -- 選択モードの切り替え
+    { key = 'v',      mods = 'NONE',  action = act.CopyMode { SetSelectionMode = 'Cell' } },
+    { key = 'v',      mods = 'SHIFT', action = act.CopyMode { SetSelectionMode = 'Line' } },
+    { key = 'v',      mods = 'CTRL',  action = act.CopyMode { SetSelectionMode = 'Block' } },
+
+    -- コピー
+    {
+      key = 'y',
+      mods = 'NONE',
+      action = act.Multiple {
+        { CopyTo = 'ClipboardAndPrimarySelection' },
+        { CopyMode = 'Close' },
+      }
+    },
+    { key = 'Enter', mods = 'NONE', action = act.CopyMode 'ClearSelectionMode' },
+  },
+}
 
 return config
