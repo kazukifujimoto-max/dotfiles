@@ -9,18 +9,21 @@ local plugins = {
   require("extensions.autopairs"),
   require("extensions.markdown"),
   require("extensions.bufferline"),
-  require("extensions.flash"),
+  require("extensions.hlchunk"),
   require("extensions.mini-animate"),
   require("extensions.mini-surround"),
   require("extensions.toggleterm"),
   require("extensions.oil"),
   require("extensions.trouble"),
+  require("extensions.flash"),
+  require("extensions.noice"),
+  require("extensions.close-buffers"),
 
   -- Telescope
   {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.8",
-    lazy = false,
+    cmd = { "Telescope" },
     config = function()
       require("extensions.telescope")
     end,
@@ -37,17 +40,16 @@ local plugins = {
   -- LSP
   {
     "neovim/nvim-lspconfig",
+    event = "BufReadPre",
     lazy = false,
     config = function()
       require("lsp")
     end,
-    dependencies = {
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-    },
   },
   {
     "williamboman/mason.nvim",
+    cmd = { "Mason", "MasonInstall", "MasonUpdate", "MasonUninstall", "MasonLog" },
+    -- event = "VeryLazy",
     config = function()
       require("extensions.mason")
     end,
@@ -66,6 +68,7 @@ local plugins = {
     event = { "InsertEnter", "CmdlineEnter" },
     config = function()
       require("extensions.nvim-cmp")
+      require("extensions.snippets")
     end,
     dependencies = {
       "neovim/nvim-lspconfig",
@@ -76,10 +79,24 @@ local plugins = {
       "onsails/lspkind-nvim",
       "hrsh7th/cmp-nvim-lsp-signature-help",
       "hrsh7th/cmp-nvim-lsp-document-symbol",
-      "L3MON4D3/LuaSnip",
+      {
+        "L3MON4D3/LuaSnip",
+        version = "v2.*",
+        build = "make install_jsregexp",
+      },
       "rafamadriz/friendly-snippets",
       "saadparwaiz1/cmp_luasnip", -- スニペット補完ソース
     },
+  },
+
+  -- Color Theme
+  {
+    'AlexvZyl/nordic.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd('colorscheme nordic')
+    end,
   },
 
   -- UI
@@ -108,21 +125,12 @@ local plugins = {
   -- コーディング系
   {
     "numToStr/Comment.nvim",
-    lazy = false,
+    event = "BufReadPre",
     config = function()
       require("extensions.comments")
     end,
     dependencies = {
       "JoosepAlviste/nvim-ts-context-commentstring",
-    },
-  },
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    opts = {},
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
     },
   },
 
@@ -131,8 +139,8 @@ local plugins = {
     "mattn/vim-sonictemplate",
     lazy = false,
     config = function()
-      vim.g.sonictemplate_vim_template_dir = "~/.config/nvim/lua/template"
-      vim.g.sonictemplate_postfix_key = "<C-j>"
+      -- vim.g.sonictemplate_vim_template_dir = "~/.config/nvim/lua/template"
+      vim.g.sonictemplate_vim_template_dir = vim.fn.stdpath('config') .. '/lua/template'
     end,
   },
 }
