@@ -2,16 +2,19 @@ local plugins = {
   require("extensions.tokyonight"),
   require("extensions.nvim-web-devicons"),
   require("extensions.nvim-treesitter"),
+  require("extensions.nvim-hlslens"),
   require("extensions.gitsigns"),
   require("extensions.nvim-tree"),
   require("extensions.alpha"),
   require("extensions.autopairs"),
   require("extensions.markdown"),
   require("extensions.bufferline"),
-  require("extensions.hlchunk"),
+  require("extensions.flash"),
   require("extensions.mini-animate"),
+  require("extensions.mini-surround"),
   require("extensions.toggleterm"),
   require("extensions.oil"),
+  require("extensions.trouble"),
 
   -- Telescope
   {
@@ -122,17 +125,6 @@ local plugins = {
       "rcarriga/nvim-notify",
     },
   },
-  {
-    "kylechui/nvim-surround",
-    version = "^3.0.0",
-    event = "VeryLazy",
-    config = function()
-      require("nvim-surround").setup({
-        -- Configuration here, or leave empty to use defaults
-      })
-    end
-  },
-
 
   -- Sonictemplate
   {
