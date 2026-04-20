@@ -17,7 +17,6 @@ local plugins = {
   require("extensions.trouble"),
   require("extensions.flash"),
   require("extensions.noice"),
-  require("extensions.close-buffers"),
 
   -- Telescope
   {
