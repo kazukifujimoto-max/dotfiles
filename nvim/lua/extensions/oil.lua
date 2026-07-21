@@ -1,7 +1,7 @@
 return {
   "stevearc/oil.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
-  lazy = false,
+  cmd = { "Oil" },
   config = function()
     require("oil").setup({
       default_file_explorer = true,
@@ -54,6 +54,7 @@ return {
       },
       use_default_keymaps = true,
       view_options = {
+        show_hidden = true,
         is_always_hidden = function(name, bufnr)
           return false
         end,
@@ -132,19 +133,6 @@ return {
       keymaps_help = {
         border = "rounded",
       },
-      show_hidden = true,
-      is_always_hidden = function(name, bufnr)
-        return
-      end,
-      natural_order = "fast",
-      case_insensitive = false,
-      sort = {
-        { "type", "asc" },
-        { "name", "asc" },
-      },
-      highlight_filename = function(entry, is_hidden, is_link_target, is_link_orphan)
-        return nil
-      end,
     })
   end,
 }

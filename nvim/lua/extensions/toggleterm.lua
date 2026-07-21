@@ -6,7 +6,7 @@ return {
     local toggleterm = require("toggleterm")
 
     toggleterm.setup({
-      open_mapping = [[<c-¥>]],
+      open_mapping = [[<C-¥>]],
       size = 20,
       direction = "float",
       shade_terminals = true,
@@ -36,11 +36,11 @@ return {
     --   hidden = true,
     --   direction = "float",
     -- })
-    --
+
     -- function _LAZYDOCKER_TOGGLE()
     --   lazydocker:toggle()
     -- end
-    --
+
     -- vim.keymap.set("n", "ld", _LAZYDOCKER_TOGGLE, {
     --   silent = true,
     --   desc = "Toggleterm: lazydocker",

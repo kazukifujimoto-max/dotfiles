@@ -15,8 +15,10 @@ local plugins = {
   require("extensions.toggleterm"),
   require("extensions.oil"),
   require("extensions.trouble"),
+  require("extensions.glance"),
   require("extensions.flash"),
   require("extensions.noice"),
+  require("extensions.close-buffers"),
 
   -- Telescope
   {
@@ -40,15 +42,14 @@ local plugins = {
   {
     "neovim/nvim-lspconfig",
     event = "BufReadPre",
-    lazy = false,
+    -- lazy = false,
     config = function()
       require("lsp")
     end,
   },
   {
     "williamboman/mason.nvim",
-    cmd = { "Mason", "MasonInstall", "MasonUpdate", "MasonUninstall", "MasonLog" },
-    -- event = "VeryLazy",
+    event = "VeryLazy",
     config = function()
       require("extensions.mason")
     end,
@@ -89,14 +90,14 @@ local plugins = {
   },
 
   -- Color Theme
-  {
-    'AlexvZyl/nordic.nvim',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      vim.cmd('colorscheme nordic')
-    end,
-  },
+  -- {
+  --   'AlexvZyl/nordic.nvim',
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     vim.cmd('colorscheme nordic')
+  --   end,
+  -- },
 
   -- UI
   {
@@ -114,8 +115,7 @@ local plugins = {
   },
   {
     "folke/which-key.nvim",
-    lazy = false,
-    priority = 2000,
+    event = "VeryLazy",
     config = function()
       require("extensions.which-key")
     end,
@@ -136,9 +136,8 @@ local plugins = {
   -- Sonictemplate
   {
     "mattn/vim-sonictemplate",
-    lazy = false,
-    config = function()
-      -- vim.g.sonictemplate_vim_template_dir = "~/.config/nvim/lua/template"
+    cmd = "Template",
+    init = function()
       vim.g.sonictemplate_vim_template_dir = vim.fn.stdpath('config') .. '/lua/template'
     end,
   },

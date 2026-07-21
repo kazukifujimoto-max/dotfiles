@@ -38,7 +38,6 @@ return {
       dashboard.button("q", "󰈆  Quit Neovim", ":qa<CR>"),
     }
 
-
     -- Footer option
     local function footer()
       local total_plugins = #vim.tbl_keys(require("lazy").plugins())

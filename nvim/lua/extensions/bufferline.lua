@@ -11,7 +11,7 @@ return {
   opts = {
     options = {
       mode = "buffers",
-      -- "slope" is good
+      -- separator_style = "slope",
       separator_style = "thin",
       hover = { enabled = true, delay = 200 },
       show_buffer_close_icons = false,

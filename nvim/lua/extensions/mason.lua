@@ -11,19 +11,19 @@ require("mason").setup({
   log_level = vim.log.levels.INFO,
 })
 
-
 require("mason-lspconfig").setup({
   ensure_installed = {
-    -- "ts_ls",
-    -- "lua_ls",
-    -- "gopls",
-    -- "pyright",
-    -- "jsonls",
-    -- "yamlls",
-    -- "dockerls",
-    -- "marksman",
-    -- "ltex",
+    "rust_analyzer",
+    "ts_ls",
+    "tailwindcss",
+    "lua_ls",
+    "gopls",
+    "pyright",
+    "jsonls",
+    "yamlls",
+    "dockerls",
+    "marksman",
+    "ltex",
   },
-  automatic_installation = true,
+  automatic_enable = false,
 })
-

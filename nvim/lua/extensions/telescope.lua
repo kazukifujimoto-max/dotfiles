@@ -34,6 +34,11 @@ require("telescope").setup({
       preview_cutoff = 120,
     },
   },
+  pickers = {
+    find_files = {
+      hidden = true,
+    },
+  },
   extensions = {
     fzf = {
       fuzzy = true,
@@ -44,6 +49,7 @@ require("telescope").setup({
     file_browser = {
       theme = "dropdown",
       hijack_netrw = true,
+      hidden = true,
       mappings = {
         ["i"] = {
           ["<C-w>"] = function()
@@ -59,13 +65,13 @@ require("telescope").setup({
         },
       },
     },
-    project = {
-      base_dirs = {
-        { path = "~/work/workspace", max_depth = 2 },
-        { path = "~/.config/nvim",   max_depth = 2 },
-      },
-      hidden_files = true,
-      theme = "dropdown",
-    },
+    --    project = {
+    --      base_dirs = {
+    --        { path = "~/work/workspace", max_depth = 2 },
+    --        { path = "~/.config/nvim", max_depth = 2 },
+    --      },
+    --      hidden_files = true,
+    --      theme = "dropdown",
+    --    },
   },
 })
