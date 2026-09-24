@@ -3,7 +3,12 @@ local wk = require("which-key")
 local mappings = {
   -- ■ ファイル
   { "<leader>f",  group = "+file" },
-  { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File",        mode = "n" },
+  {
+    "<leader>ff",
+    function() require("utils.project").telescope("find_files") end,
+    desc = "Find Project File",
+    mode = "n",
+  },
   -- ■ ウィンドウ
   { "<leader>w",  group = "+window",               mode = "n" },
   { "<leader>ws", "<cmd>split<cr>",                desc = "Horizontal Split", mode = "n" },
@@ -44,10 +49,24 @@ local mappings = {
     desc = "Preview Hunk",
     mode = "n"
   },
+  -- ■ タスク (Overseer)
+  { "<leader>o", group = "+task", mode = "n" },
+  -- ■ プロジェクト
+  { "<leader>p", group = "+project", mode = "n" },
   -- ■ 検索 (Telescope)
   { "<leader>s",  group = "+search",               mode = "n" },
-  { "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Find Files", mode = "n" },
-  { "<leader>sg", "<cmd>Telescope live_grep<cr>",  desc = "Grep",       mode = "n" },
+  {
+    "<leader>sf",
+    function() require("utils.project").telescope("find_files") end,
+    desc = "Find Project Files",
+    mode = "n",
+  },
+  {
+    "<leader>sg",
+    function() require("utils.project").telescope("live_grep") end,
+    desc = "Grep Project",
+    mode = "n",
+  },
 
   -- ■ Visual mode mappings
   {

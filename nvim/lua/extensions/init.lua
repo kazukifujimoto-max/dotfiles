@@ -9,6 +9,10 @@ local plugins = {
   require("extensions.autopairs"),
   require("extensions.markdown"),
   require("extensions.bufferline"),
+  require("extensions.dropbar"),
+  require("extensions.diffview"),
+  require("extensions.overseer"),
+  require("extensions.auto-session"),
   require("extensions.hlchunk"),
   require("extensions.mini-animate"),
   require("extensions.mini-surround"),
@@ -17,6 +21,7 @@ local plugins = {
   require("extensions.trouble"),
   require("extensions.glance"),
   require("extensions.flash"),
+  require("extensions.fidget"),
   require("extensions.noice"),
   require("extensions.close-buffers"),
 
@@ -57,6 +62,7 @@ local plugins = {
       "williamboman/mason-lspconfig.nvim",
       "jay-babu/mason-null-ls.nvim",
       "nvimtools/none-ls.nvim",
+      "nvimtools/none-ls-extras.nvim",
       "neovim/nvim-lspconfig",
     },
   },
@@ -89,16 +95,6 @@ local plugins = {
     },
   },
 
-  -- Color Theme
-  -- {
-  --   'AlexvZyl/nordic.nvim',
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     vim.cmd('colorscheme nordic')
-  --   end,
-  -- },
-
   -- UI
   {
     "nvim-lualine/lualine.nvim",
@@ -108,7 +104,6 @@ local plugins = {
     end,
     dependencies = {
       "nvim-tree/nvim-web-devicons",
-      "bluz71/vim-nightfly-colors",
       "lewis6991/gitsigns.nvim",
       --  "SmiteshP/nvim-navic"
     },
