@@ -1,7 +1,7 @@
 local wezterm = require 'wezterm'
 
 -- 背景画像のパスを設定
-local background_image = "/Users/kazuki/.config/wezterm/J.B.Cat.png"
+local background_image = "/Users/kazuki/.config/wezterm/glaze_2.heic"
 
 return {
   -- 最初のレイヤー (単色背景)
@@ -16,7 +16,7 @@ return {
   -- 背景画像レイヤー
   {
     source = { File = background_image },
-    opacity = 0.13,             -- 透明度
+    opacity = 0.06,             -- 透明度
 
     horizontal_align = "Right", -- 水平方向の画像位置
     vertical_align = "Bottom",  -- 垂直方向の画像位置

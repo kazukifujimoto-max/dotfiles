@@ -40,7 +40,9 @@ config.colors = {
   tab_bar = {
     inactive_tab_edge = "none",
   },
-  cursor_bg = "#F1009A",
+  cursor_bg = "#1F4B66",
+  cursor_fg = "#B7E3E0",
+  cursor_border = "#5C9BB3"
 }
 
 local SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_lower_right_triangle
