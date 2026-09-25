@@ -22,7 +22,7 @@ config.initial_cols = 220
 config.window_decorations = "RESIZE"
 config.show_tabs_in_tab_bar = true
 config.tab_bar_at_bottom = true
-config.hide_tab_bar_if_only_one_tab = true
+config.hide_tab_bar_if_only_one_tab = false
 
 config.window_frame = {
   inactive_titlebar_bg = "none",
@@ -45,31 +45,7 @@ config.colors = {
   cursor_border = "#5C9BB3"
 }
 
-local SOLID_LEFT_ARROW = wezterm.nerdfonts.ple_lower_right_triangle
-local SOLID_RIGHT_ARROW = wezterm.nerdfonts.ple_upper_left_triangle
-
-wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-  local background = "#00152B"
-  local foreground = "#8FBFBB"
-  local edge_background = "none"
-  if tab.is_active then
-    background = "#175DAF"
-    foreground = "#FFFFFF"
-  end
-  local edge_foreground = background
-  local title = "   " .. wezterm.truncate_right(tab.active_pane.title, max_width - 1) .. "   "
-  return {
-    { Background = { Color = edge_background } },
-    { Foreground = { Color = edge_foreground } },
-    { Text = SOLID_LEFT_ARROW },
-    { Background = { Color = background } },
-    { Foreground = { Color = foreground } },
-    { Text = title },
-    { Background = { Color = edge_background } },
-    { Foreground = { Color = edge_foreground } },
-    { Text = SOLID_RIGHT_ARROW },
-  }
-end)
+require("tabbar").apply_to_config(config)
 
 ----------------------------------------------------
 -- Keybindings & CopyMode
